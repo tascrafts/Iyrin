@@ -53,7 +53,7 @@ $month_percent = $month_online['COUNT(`time`)'] / ($month_online['COUNT(`time`)'
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Lyrin Server Monitor</title>
+    <title>Iyrin Server Monitor</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -68,7 +68,7 @@ $month_percent = $month_online['COUNT(`time`)'] / ($month_online['COUNT(`time`)'
 
 <div class="row">
     <div class="col-sm">
-        <h1>Lyrin Server Monitor</h1>
+        <h1>Iyrin Server Monitor</h1>
         <span class="text-muted">Version 0.01</span><br><br><br><br>
     </div>
 </div>
