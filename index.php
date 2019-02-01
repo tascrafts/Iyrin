@@ -28,22 +28,19 @@ $result = array_reverse($result,true);
 
 
 // Today
-$today_online  = mysqli_fetch_assoc(mysqli_query($dblink, "SELECT COUNT(`time`) FROM `tascrafts.com` WHERE `status` = 1 and `time` > ".(1*24*60*60)." "));
-$today_offline = mysqli_fetch_assoc(mysqli_query($dblink, "SELECT COUNT(`time`) FROM `tascrafts.com` WHERE `status` = 0 and `time` > ".(1*24*60*60)." "));
+$today_online  = mysqli_fetch_assoc(mysqli_query($dblink, "SELECT COUNT(`time`) FROM `tascrafts.com` WHERE `status` = 1 and `time` > ".(time()-(1*24*60*60))." "));
+$today_offline = mysqli_fetch_assoc(mysqli_query($dblink, "SELECT COUNT(`time`) FROM `tascrafts.com` WHERE `status` = 0 and `time` > ".(time()-(1*24*60*60))." "));
 $today_percent = $today_online['COUNT(`time`)'] / ($today_online['COUNT(`time`)'] + $today_offline['COUNT(`time`)']) * 100;
 
 // This week
-$week_online  = mysqli_fetch_assoc(mysqli_query($dblink, "SELECT COUNT(`time`) FROM `tascrafts.com` WHERE `status` = 1 and `time` > ".(7*24*60*60)." "));
-$week_offline = mysqli_fetch_assoc(mysqli_query($dblink, "SELECT COUNT(`time`) FROM `tascrafts.com` WHERE `status` = 0 and `time` > ".(7*24*60*60)." "));
+$week_online  = mysqli_fetch_assoc(mysqli_query($dblink, "SELECT COUNT(`time`) FROM `tascrafts.com` WHERE `status` = 1 and `time` > ".(time()-(7*24*60*60))." "));
+$week_offline = mysqli_fetch_assoc(mysqli_query($dblink, "SELECT COUNT(`time`) FROM `tascrafts.com` WHERE `status` = 0 and `time` > ".(time()-(7*24*60*60))." "));
 $week_percent = $week_online['COUNT(`time`)'] / ($week_online['COUNT(`time`)'] + $week_offline['COUNT(`time`)']) * 100;
 
 // This week
-$month_online  = mysqli_fetch_assoc(mysqli_query($dblink, "SELECT COUNT(`time`) FROM `tascrafts.com` WHERE `status` = 1 and `time` > ".(30*24*60*60)." "));
-$month_offline = mysqli_fetch_assoc(mysqli_query($dblink, "SELECT COUNT(`time`) FROM `tascrafts.com` WHERE `status` = 0 and `time` > ".(30*24*60*60)." "));
+$month_online  = mysqli_fetch_assoc(mysqli_query($dblink, "SELECT COUNT(`time`) FROM `tascrafts.com` WHERE `status` = 1 and `time` > ".(time()-(30*24*60*60))." "));
+$month_offline = mysqli_fetch_assoc(mysqli_query($dblink, "SELECT COUNT(`time`) FROM `tascrafts.com` WHERE `status` = 0 and `time` > ".(time()-(30*24*60*60))." "));
 $month_percent = $month_online['COUNT(`time`)'] / ($month_online['COUNT(`time`)'] + $month_offline['COUNT(`time`)']) * 100;
-
-
-
 
 
 
@@ -53,7 +50,7 @@ $month_percent = $month_online['COUNT(`time`)'] / ($month_online['COUNT(`time`)'
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <? if($auto_refresh) { ?><meta http-equiv="refresh" content="<?=$auto_refresh;?>"><? } ?>
+    <? if($auto_refresh) { ?><meta http-equiv="refresh" content="<? echo ($auto_refresh * 60); ?>"><? } ?>
     <title>Iyrin Server Monitor</title>
 
     <!-- Bootstrap CSS -->
@@ -104,9 +101,9 @@ $month_percent = $month_online['COUNT(`time`)'] / ($month_online['COUNT(`time`)'
 
     <div class="col-md-6">
         <h3>Latest incidents</h3>
-        <? foreach($result as $key => $value) { ?>
+        <? if($result) { foreach($result as $key => $value) { ?>
             <p>Server went down at <?=date("F j, Y, g:ia", $key);?> for <?=$value;?> minutes.</p>
-        <? } ?>
+        <? } } else { ?><p>No incidents to report!</p><? } ?>
     </div>
 </div>
 
