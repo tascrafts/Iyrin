@@ -53,6 +53,7 @@ $month_percent = $month_online['COUNT(`time`)'] / ($month_online['COUNT(`time`)'
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <? if($auto_refresh) { ?><meta http-equiv="refresh" content="<?=$auto_refresh;?>"><? } ?>
     <title>Iyrin Server Monitor</title>
 
     <!-- Bootstrap CSS -->

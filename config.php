@@ -8,11 +8,12 @@
 // How many days to keep history for
 $days_history = 180;
 
+// Enable autorefresh in minutes, 0 to disable
+$auto_refresh = 1;
 
 // A list of servers to monitor. The file only has to echo the unix timestamp.
 //$server['domain.com'] = "http://domain.com/pinger.php";
 $server['tascrafts.com'] = "http://tascrafts.com/pinger.php";
-
 
 // Your regular mySQL connection information.
 $mysql_user   = "";
